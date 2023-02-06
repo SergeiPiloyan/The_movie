@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, IconButton, ListItem, Stack, } from '@mui/material'
+import { Avatar, IconButton, Link, Stack, } from '@mui/material'
 import { Add, Language, Search } from '@mui/icons-material'
 
 const logoHeader = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'
@@ -11,14 +11,13 @@ const LeftSide = () => {
     justifyContent="flex-start"
     alignItems="center"
     spacing={1}
-    sx={{ width: 400, height: 40, margin: "0px 0px 20px 0px", }}
+    sx={{ width: 400, height: 40, }}
   >
     <img width={80} height={80} src={logoHeader} alt='#' />
-    {routesHeader.map((text) => <ListItem> {text} </ListItem>)}
+    {routesHeader.map((text) => <Link sx={{ textDecoration: 'none', color: 'white' }}  >  {text} </Link >)}
 
   </Stack>
 }
-
 const RightSide = () => {
   return <Stack
     direction="row"
@@ -45,8 +44,6 @@ const Header = () => {
 
       <LeftSide />
       <RightSide />
-
-
 
     </Stack >
   )
