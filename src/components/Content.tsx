@@ -1,49 +1,21 @@
-import { Button } from '@mui/material'
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { setDirector } from '../store/slices/directorSlice';
-import { setMovie } from '../store/slices/movieSlice'
-
-const Content = () => {
-
-useEffect( () => {}, [])
-
-  const dispatch = useAppDispatch();
-  const m = useAppSelector((state) => state.movie)
-
-  const changeMovieName = () => {
-    m.movie.name === 'Terminator'
-      ? dispatch(setMovie({ name: ' King-Kong', direction: 'Press button for direction' }))
-      : dispatch(setMovie({ name: ' Terminator', direction: 'Press button for direction' }))
-  }
-
-  const directionAboutMovie = () => {
-    m.movie.name === 'Terminator'
-      ? dispatch(setMovie({ direction: 'This is direction about Terminator', name: 'Terminator' }))
-      : dispatch(setMovie({ direction: 'This is direction about King-Kong', name: 'King-Kong' }))
-  }
+import { Box } from '@mui/material';
+import { AfterHeader } from '../utils/AfterHeader';
+import { Movie } from './Movie';
+import { PersonDates } from './PersonDates';
 
 
-  const d = useAppSelector((state) => state.director)
-  const showDirector = () => {
-    if (m.movie.name == 'Terminator') {dispatch(setDirector({ name: ' James Cameron' }))}
-    else { dispatch(setDirector({ name: ' Peter Jackson' }))}
-  }
 
+const Film = () => {
 
   return (
-    <>
-      <div> Movie name:   {m.movie.name}</div >
-      <div> Direction:    {m.movie.direction}</div >
+    <Box sx={{ width: '100%', height: '570px', }}>
 
-      <Button onClick={changeMovieName}> Change name </Button>
-      <Button onClick={directionAboutMovie} > Direction </Button>
+      <AfterHeader />
+      <Movie />
+      
 
-      <hr />
-      <div> Director:{d.director.name}</div >
-      <Button onClick={showDirector}> Show director </Button>
-    </>
+    </Box>
   )
 }
 
-export default Content
+export default Film;

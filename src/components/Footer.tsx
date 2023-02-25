@@ -58,9 +58,9 @@ const Footer = () => {
       alignItems="center"
       spacing={3}
       sx={{ height: 322, backgroundColor: '#032541', color: 'white', }} >
-
-      <BarFooter />
+      
       <LogoButtonFooter />
+      <BarFooter />
 
     </Stack >
   )
