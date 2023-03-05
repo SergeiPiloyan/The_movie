@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 
 export const instance = axios.create({
-    baseURL: "https://api.themoviedb.org/3/",
+  baseURL: "https://api.themoviedb.org/3/",
 });
 const id = 640146;
 
@@ -15,17 +15,16 @@ instance.interceptors.request.use((request) => {
 });
 
 
-
 export const filmApi = {
-    get: async (id: number) => {
-      const response: AxiosResponse = await instance.get("movie/" + id);
-      return response.data;
-    },
-  };
+  get: async (id: number) => {
+    const response: AxiosResponse = await instance.get("movie/" + id);
+    return response.data;
+  },
+};
 
-  export const personApi = {
-    get: async (personId: number) => {
-      const response: AxiosResponse = await instance.get("person/" + personId);
-      return response.data;
-    },
-  };
+export const actorApi = {
+  get: async (id: number) => {
+    const response: AxiosResponse = await instance.get(`/movie/${id}/credits`);
+    return response.data;
+  },
+};

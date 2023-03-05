@@ -4,10 +4,9 @@ import { BACKGROUND_URL, POSTER_URL } from "../API/urlConsts";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getFilmById } from "../store/slices/movieSlice";
 import { IconsBox } from "../utils/IconsBox";
-import { PersonDates } from "./PersonDates";
 
 
-export const Movie = () => {
+export const MovieInfo = () => {
 
     const dispatch = useAppDispatch();
     const { movie } = useAppSelector((state) => state.movie);
@@ -29,15 +28,18 @@ export const Movie = () => {
             justifyContent="center"
             alignItems="center"
             spacing={2}
-            sx={{ width: '100%', height: '100%', backgroundColor: '#20205f', }}>
+            sx={{
+                width: '100%', height: '100%', backgroundColor: '#20205f',
+                backgroundImage: `url(${BACKGROUND_URL})`, backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover', backgroundPosition: 'rightTop'
+            }}>
 
             <Box sx={{ width: 300, height: 450, marginRight: 3, }}>
-                <img style={{ width: 300, height: 450 }} src={POSTER_URL + movie.poster_path} />
+                <img style={{ width: 300, height: 450, borderRadius: 10 }} src={POSTER_URL + movie.poster_path} />
             </Box>
 
             <Box sx={{
                 width: 1020, height: 450,
-                backgroundImage: `url(${BACKGROUND_URL})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'rightTop'
             }}>
                 <Typography sx={{ color: 'white', fontSize: 35.2, fontWeight: 'bold' }} >
                     {movie.title + ` (2023)`}
@@ -48,7 +50,7 @@ export const Movie = () => {
                 </Typography>
                 <IconsBox />
 
-                <Typography sx={{ color: 'white', fontStyle: 'italic', fontSize: '16px', marginTop: '20px'}} >
+                <Typography sx={{ color: 'white', fontStyle: 'italic', fontSize: '16px', marginTop: '20px' }} >
                     {movie.tagline}
                 </Typography>
 
@@ -59,8 +61,6 @@ export const Movie = () => {
                 <Typography sx={{ color: 'white', fontSize: '13.5px', marginTop: '10px', }} >
                     {movie.overview}
                 </Typography>
-
-                <PersonDates />
             </Box>
         </Stack>
     )

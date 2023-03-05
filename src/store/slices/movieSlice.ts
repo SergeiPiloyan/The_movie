@@ -1,13 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { filmApi } from '../../API/Api'
-import type { RootState } from '../store'
+import { actorApi, filmApi } from '../../API/Api'
 
 export const getFilmById = createAsyncThunk<any, any, any>("movie/getFilmById", async function (id: number, { rejectWithValue }) {
     try {
-
         const data = await filmApi.get(id);
-        console.log(data);
+        return data;
+    } catch (error) {
+        return rejectWithValue("Error");
+    }
+});
 
+export const getActorById = createAsyncThunk<any, any, any>("movie/getActorById", async function (id: number, { rejectWithValue }) {
+    try {
+        const data = await actorApi.get(id);
         return data;
     } catch (error) {
         return rejectWithValue("Error");
@@ -19,6 +24,7 @@ export const getFilmById = createAsyncThunk<any, any, any>("movie/getFilmById", 
 type TMovieState = {
     movie: TMovie | null,
     isLoading: boolean
+    actors: TActor[]
 }
 
 type TMovie = {
@@ -34,6 +40,12 @@ type TGenres = {
     id: number | null,
     name: string
 }
+type TActor = {
+    id: number
+    name: string
+    photo: string
+}
+
 
 const initialState: TMovieState = {
     movie: {
@@ -46,10 +58,10 @@ const initialState: TMovieState = {
             name: ''
         }],
         tagline: '',
-        overview: ''
+        overview: '',
     },
+    actors: [],
     isLoading: false,
-
 }
 
 
@@ -59,18 +71,26 @@ export const movieSlice = createSlice({
     reducers: {
         setMovie: (state, action: PayloadAction<TMovie>) => {
             state.movie = action.payload
-        }
+        },
+        setActors: (state, action: PayloadAction<TActor[]>) => {
+            state.actors = action.payload
+        },
     },
     extraReducers: (builder) => {
-        builder.addCase(
-            getFilmById.fulfilled,
-            (state, action: PayloadAction<any>) => {
-                console.log(action.payload);
-
-                state.movie = (action.payload);
-
-            }
-        )
+        builder
+            .addCase(
+                getFilmById.fulfilled,
+                (state, action: PayloadAction<any>) => {
+                    state.movie = (action.payload);
+                },
+            )
+            .addCase(
+                getActorById.fulfilled,
+                (state, action: PayloadAction<any>) => {
+                    console.log('data', action.payload)
+                    state.actors = (action.payload);
+                },
+            )
     },
 })
 

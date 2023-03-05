@@ -9,7 +9,7 @@ export const AfterHeader = () => {
             justifyContent="center"
             alignItems="center"
             spacing={6}
-            sx={{ width: "100%", height: 46, }}>
+            sx={{ height: 46, }}>
             {items.map(i => <Typography> {i} </Typography>)}
         </Stack>
 
