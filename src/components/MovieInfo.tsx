@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { BACKGROUND_URL, POSTER_URL } from "../API/urlConsts";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getFilmById } from "../store/slices/movieSlice";
-import { IconsBox } from "../utils/IconsBox";
+import { IconsBoxHeader } from "../utils/IconsBox";
 
 
 export const MovieInfo = () => {
@@ -48,7 +48,7 @@ export const MovieInfo = () => {
                 <Typography sx={{ color: 'white', fontSize: 16, marginBottom: 3 }} variant="subtitle1" >
                     {movie.release_date} • {movie.genres.map(g => `${g.name} `)} • 2h 5m
                 </Typography>
-                <IconsBox />
+                <IconsBoxHeader />
 
                 <Typography sx={{ color: 'white', fontStyle: 'italic', fontSize: '16px', marginTop: '20px' }} >
                     {movie.tagline}

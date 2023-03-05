@@ -28,3 +28,10 @@ export const actorApi = {
     return response.data;
   },
 };
+
+export const reviewApi = {
+  get: async (id: number) => {
+    const response: AxiosResponse = await instance.get(`/movie/${id}/reviews`);
+    return response.data;
+  },
+};
