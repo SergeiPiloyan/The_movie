@@ -7,6 +7,7 @@ import { MovieInfo } from "./MovieInfo";
 import { CardOfActor } from "../utils/CardOfActor";
 import { IconsBoxBar } from "../utils/IconsBox";
 import ReviewBlock from "../utils/ReviewBlock";
+import { MediaBlock } from "../utils/MediaBlock";
 
 
 
@@ -44,10 +45,11 @@ const Content = () => {
         sx={{ margin: '0px -8px' }}>
 
 
-        <Stack sx={{ width: "58%", marginBottom: 2, marginLeft: 10 }} divider={<Divider />} >
+        <Stack sx={{ width: "57%", marginBottom: 2, }} divider={<Divider />} >
 
           <CardOfActor />
           <ReviewBlock />
+          <MediaBlock />
 
         </Stack>
 

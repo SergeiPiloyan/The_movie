@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material"
 import { Box, Stack } from "@mui/system"
+import { AUTHOR_REVIEW_URL, USER_PHOTO } from "../API/urlConsts"
 import { useAppSelector } from "../store/hooks"
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const ReviewBlock = () => {
 
@@ -9,6 +9,14 @@ const ReviewBlock = () => {
     console.log('reviews', reviews);
 
 
+    const randomReview = Math.floor(Math.random() * reviews.length);
+
+
+
+
+    if (reviews.length < 1) {
+        return null
+    }
     return (
         <Box>
             <Stack direction="row"
@@ -33,23 +41,36 @@ const ReviewBlock = () => {
                     justifyContent="start"
                     alignItems="center"
                     spacing={2}>
-                    <Box sx={{ width: '15%', height: '330px', background: 'pink' }}>
+                    <Box sx={{ width: '15%', height: '330px', }}>
 
+                        {reviews[randomReview].author_details.avatar_path
+                            ? <img style={{ margin: '20px 0 0 20px', borderRadius: 40 }} src={AUTHOR_REVIEW_URL + reviews[randomReview].author_details.avatar_path} />
+                            : <img style={{ margin: '20px 0 0 20px', width: 64, height: 64, borderRadius: 40 }} src={USER_PHOTO} />
+                        }
                     </Box>
 
-                    <Box sx={{ width: '100%', height: '330px', background: 'gray' }} >
+
+                    <Box sx={{ width: '100%', height: '330px' }} >
                         <Box sx={{ margin: '2em 0 0' }}>
-                            <Typography sx={{ fontWeight: 700, fontSize: 20 }}> A review by {reviews[1].author} </Typography>
-                            <Typography sx={{ marginTop: -0.5, fontWeight: 200, fontSize: 12 }}> Written by {reviews[1].author} on February 16, 2023 </Typography>
+                            <Typography sx={{ fontWeight: 700, fontSize: 20 }}> A review by {reviews[randomReview].author} </Typography>
+                            <Typography sx={{ marginTop: -0.5, fontWeight: 200, fontSize: 12 }}> Written by <strong> {reviews[randomReview].author} </strong> on February 16, 2023 </Typography>
                         </Box>
+                        <Typography sx={{
+                            height: '195px',
+                            zIndex: 100000,
+                            marginTop: 4,
+                            marginRight: '30px',
+                            whiteSpace: 'pre-line',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                        }}>
+                            {reviews[randomReview].content}
+                        </Typography>
                     </Box>
-
-
                 </Stack>
-            </Box>
-
-
-        </Box>
+            </Box >
+            <Typography sx={{ fontWeight: 700, margin: '1.5em 0px' }}> Read All Reviews </Typography>
+        </Box >
     )
 }
 

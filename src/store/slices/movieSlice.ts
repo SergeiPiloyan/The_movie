@@ -30,15 +30,15 @@ export const getReviewById = createAsyncThunk<any, any, any>("movie/getReviewByI
 
 
 type TMovieState = {
-    movie: TMovie | null,
+    movie: TMovie ,
     isLoading: boolean
     actors: TActor[]
     reviews: TReview[]
 }
 type TMovie = {
     title: string
-    poster_path: any;
-    backdrop_path: any
+    poster_path: string
+    backdrop_path: string
     release_date: string
     genres: Array<TGenres>
     tagline: string
@@ -60,15 +60,15 @@ type TReview = {
     author: string
     author_details: {
         avatar_path: string
+        rating: number
     }
-
 }
 
 const initialState: TMovieState = {
     movie: {
         title: '',
-        poster_path: null,
-        backdrop_path: null,
+        poster_path: '',
+        backdrop_path: '',
         release_date: '',
         genres: [{
             id: null,
@@ -102,19 +102,20 @@ export const movieSlice = createSlice({
             .addCase(
                 getFilmById.fulfilled,
                 (state, action: PayloadAction<any>) => {
-                    state.movie = (action.payload);
+                    state.movie = action.payload;
                 },
             )
             .addCase(
                 getActorById.fulfilled,
                 (state, action: PayloadAction<any>) => {
-                    state.actors = (action.payload.cast);
+                    state.actors = action.payload.cast;
                 },
             )
             .addCase(
                 getReviewById.fulfilled,
                 (state, action: PayloadAction<any>) => {
-                    state.reviews = (action.payload.results);
+                    console.log( "action", action.payload.results);
+                    state.reviews = action.payload.results;
                 },
             )
     },
