@@ -17,7 +17,7 @@ instance.interceptors.request.use((request) => {
 
 export const filmApi = {
   get: async (id: number) => {
-    const response: AxiosResponse = await instance.get("movie/" + id);
+    const response: AxiosResponse = await instance.get(`movie/${id}`);
     return response.data;
   },
 };
@@ -32,6 +32,12 @@ export const actorApi = {
 export const reviewApi = {
   get: async (id: number) => {
     const response: AxiosResponse = await instance.get(`/movie/${id}/reviews`);
+    return response.data;
+  },
+};
+export const recommendationsApi = {
+  get: async (id: number) => {
+    const response: AxiosResponse = await instance.get(`/movie/${id}/recommendations`);
     return response.data;
   },
 };

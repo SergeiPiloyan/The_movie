@@ -1,13 +1,13 @@
 import { Button, Typography } from "@mui/material"
 import { Box, Stack } from "@mui/system"
-import { BACKGROUND_MEDIA_URL, POSTER_MEDIA_URL } from "../API/urlConsts"
+import { BACKGROUND_MEDIA_URL, POSTER_MEDIA_URL, VIDEO_URL } from "../API/urlConsts"
 import { useAppSelector } from "../store/hooks"
 
 export const MediaBlock = () => {
     const { movie } = useAppSelector((state) => state.movie)
 
     return (
-        <Box>
+        <Box sx={{ padding: '0 0 2em' }}>
             <Stack direction="row"
                 justifyContent="flex-start"
                 alignItems="center"
@@ -42,10 +42,18 @@ export const MediaBlock = () => {
                         borderRadius: 8,
                         backgroundColor: "#d1d1cf",
                         minHeight: 24,
-                        border: "3px solid white",
+                        border: "4px solid white",
                     },
                 }}>
-                <img style={{ minWidth: 533, maxWidth: 533, height: '300px' }} src={`${BACKGROUND_MEDIA_URL}${movie.backdrop_path}`} />
+                <div>
+                    <iframe
+                        style={{ minWidth: "533px", minHeight: "300px" }}
+                        src={`https://www.themoviedb.org/video/play?key=ZlNFpri-Y40`}
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
                 <img style={{ minWidth: 533, maxWidth: 533, height: '300px' }} src={`${BACKGROUND_MEDIA_URL}${movie.backdrop_path}`} />
                 <img style={{ minWidth: 200, maxWidth: 200, height: '300px' }} src={`${POSTER_MEDIA_URL}${movie.poster_path}`} />
             </Stack>

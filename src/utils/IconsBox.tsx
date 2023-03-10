@@ -28,7 +28,7 @@ export const IconsBoxHeader = () => {
 export const IconsBoxBar = () => {
     return (
         <>
-            <Box sx={{ marginTop: '-8em' }}>
+            <Box sx={{ paddingTop: '20px' }}>
                 <FacebookIcon fontSize="large" sx={{ padding: 1 }} />
                 <TwitterIcon fontSize="large" sx={{ padding: 1 }} />
                 <InstagramIcon fontSize="large" sx={{ padding: 1 }} />

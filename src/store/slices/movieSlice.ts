@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { actorApi, filmApi, reviewApi } from '../../API/Api'
+import { actorApi, filmApi, recommendationsApi, reviewApi } from '../../API/Api'
 
 export const getFilmById = createAsyncThunk<any, any, any>("movie/getFilmById", async function (id: number, { rejectWithValue }) {
     try {
@@ -26,7 +26,14 @@ export const getReviewById = createAsyncThunk<any, any, any>("movie/getReviewByI
         return rejectWithValue("Error");
     }
 });
-
+export const getRecommendationsById = createAsyncThunk<any, any, any>("movie/getRecommendationsById", async function (id: number, { rejectWithValue }) {
+    try {
+        const data = await recommendationsApi.get(id);
+        return data;
+    } catch (error) {
+        return rejectWithValue("Error");
+    }
+});
 
 
 type TMovieState = {
@@ -34,6 +41,7 @@ type TMovieState = {
     isLoading: boolean
     actors: TActor[]
     reviews: TReview[]
+    recommendations: TRecommendations[]
 }
 type TMovie = {
     title: string
@@ -54,7 +62,6 @@ type TActor = {
     profile_path: string
     character: string
 }
-
 type TReview = {
     content: string
     author: string
@@ -63,6 +70,12 @@ type TReview = {
         rating: number
     }
 }
+type TRecommendations = {
+    id: number
+    backdrop_path: string
+    title: string
+}
+
 
 const initialState: TMovieState = {
     movie: {
@@ -80,6 +93,7 @@ const initialState: TMovieState = {
     actors: [],
     isLoading: false,
     reviews: [],
+    recommendations: []
 }
 
 
@@ -95,6 +109,9 @@ export const movieSlice = createSlice({
         },
         setReviews:  (state, action: PayloadAction<TReview[]>) => {
             state.reviews = action.payload
+        },
+        setRecommendations:  (state, action: PayloadAction<TRecommendations[]>) => {
+            state.recommendations = action.payload
         },
     },
     extraReducers: (builder) => {
@@ -114,8 +131,13 @@ export const movieSlice = createSlice({
             .addCase(
                 getReviewById.fulfilled,
                 (state, action: PayloadAction<any>) => {
-                    console.log( "action", action.payload.results);
                     state.reviews = action.payload.results;
+                },
+            )
+            .addCase(
+                getRecommendationsById.fulfilled,
+                (state, action: PayloadAction<any>) => {
+                    state.recommendations = action.payload.results;
                 },
             )
     },

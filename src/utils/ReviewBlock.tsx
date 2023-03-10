@@ -6,12 +6,8 @@ import { useAppSelector } from "../store/hooks"
 const ReviewBlock = () => {
 
     const { reviews } = useAppSelector((state) => state.movie)
-    console.log('reviews', reviews);
-
 
     const randomReview = Math.floor(Math.random() * reviews.length);
-
-
 
 
     if (reviews.length < 1) {

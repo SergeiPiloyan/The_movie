@@ -1,13 +1,14 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getActorById, getFilmById, getReviewById } from "../store/slices/movieSlice";
+import { getActorById, getFilmById, getRecommendationsById, getReviewById } from "../store/slices/movieSlice";
 import { AfterHeader } from '../utils/AfterHeader';
 import { MovieInfo } from "./MovieInfo";
 import { CardOfActor } from "../utils/CardOfActor";
 import { IconsBoxBar } from "../utils/IconsBox";
 import ReviewBlock from "../utils/ReviewBlock";
 import { MediaBlock } from "../utils/MediaBlock";
+import { RecommendationsBlock } from "../utils/RecommendationsBlock";
 
 
 
@@ -21,7 +22,7 @@ const Content = () => {
     dispatch(getFilmById(640146))
     dispatch(getActorById(640146))
     dispatch(getReviewById(640146))
-
+    dispatch(getRecommendationsById(640146))
   }, [])
 
 
@@ -40,17 +41,15 @@ const Content = () => {
       <Stack
         direction="row"
         justifyContent="center"
-        alignItems="center"
         spacing={4}
         sx={{ margin: '0px -8px' }}>
 
 
         <Stack sx={{ width: "57%", marginBottom: 2, }} divider={<Divider />} >
-
           <CardOfActor />
           <ReviewBlock />
           <MediaBlock />
-
+          <RecommendationsBlock />
         </Stack>
 
 

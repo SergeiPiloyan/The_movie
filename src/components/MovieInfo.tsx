@@ -11,11 +11,11 @@ export const MovieInfo = () => {
     const dispatch = useAppDispatch();
     const { movie } = useAppSelector((state) => state.movie);
 
+
     useEffect(() => {
         dispatch(getFilmById(640146))
     }, [])
 
-    console.log('state:', movie);
 
     if (!movie) {
         return null
