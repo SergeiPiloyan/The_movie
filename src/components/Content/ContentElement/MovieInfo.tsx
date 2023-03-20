@@ -1,21 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { BACKGROUND_URL, POSTER_URL } from "../API/urlConsts";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getFilmById } from "../store/slices/movieSlice";
-import { IconsBoxHeader } from "../utils/IconsBox";
+import { BACKGROUND_URL, POSTER_URL } from "../../../API/urlConsts";
+import { useAppSelector } from "../../../store/hooks";
+import { IconsBoxMovie } from "./Icons/IconsBoxMovie";
 
 
 export const MovieInfo = () => {
 
-    const dispatch = useAppDispatch();
     const { movie } = useAppSelector((state) => state.movie);
-
-
-    useEffect(() => {
-        dispatch(getFilmById(640146))
-    }, [])
-
 
     if (!movie) {
         return null
@@ -23,6 +14,8 @@ export const MovieInfo = () => {
 
 
     return (
+
+
         <Stack
             direction="row"
             justifyContent="center"
@@ -30,10 +23,9 @@ export const MovieInfo = () => {
             spacing={2}
             sx={{
                 width: '100%', height: '100%', backgroundColor: '#20205f',
-                backgroundImage: `url(${BACKGROUND_URL})`, backgroundRepeat: 'no-repeat',
+                backgroundImage: `url(${BACKGROUND_URL}${movie.backdrop_path})`, backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover', backgroundPosition: 'rightTop'
             }}>
-
             <Box sx={{ width: 300, height: 450, marginRight: 3, }}>
                 <img style={{ width: 300, height: 450, borderRadius: 10 }} src={POSTER_URL + movie.poster_path} />
             </Box>
@@ -48,7 +40,7 @@ export const MovieInfo = () => {
                 <Typography sx={{ color: 'white', fontSize: 16, marginBottom: 3 }} variant="subtitle1" >
                     {movie.release_date} • {movie.genres.map(g => `${g.name} `)} • 2h 5m
                 </Typography>
-                <IconsBoxHeader />
+                <IconsBoxMovie />
 
                 <Typography sx={{ color: 'white', fontStyle: 'italic', fontSize: '16px', marginTop: '20px' }} >
                     {movie.tagline}

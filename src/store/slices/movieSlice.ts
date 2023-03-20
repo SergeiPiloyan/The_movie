@@ -43,6 +43,7 @@ type TMovieState = {
     reviews: TReview[]
     recommendations: TRecommendations[]
 }
+
 type TMovie = {
     title: string
     poster_path: string
@@ -51,6 +52,9 @@ type TMovie = {
     genres: Array<TGenres>
     tagline: string
     overview: string
+    status: string
+    budget: number
+    revenue: number
 }
 type TGenres = {
     id: number | null,
@@ -87,8 +91,11 @@ const initialState: TMovieState = {
             id: null,
             name: ''
         }],
+        status: '',
         tagline: '',
         overview: '',
+        budget: 0,
+        revenue: 0,
     },
     actors: [],
     isLoading: false,

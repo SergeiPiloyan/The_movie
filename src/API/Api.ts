@@ -4,7 +4,6 @@ import axios, { AxiosResponse } from "axios";
 export const instance = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
 });
-const id = 640146;
 
 instance.interceptors.request.use((request) => {
   request.params = {

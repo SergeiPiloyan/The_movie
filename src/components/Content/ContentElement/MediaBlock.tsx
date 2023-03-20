@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material"
 import { Box, Stack } from "@mui/system"
-import { BACKGROUND_MEDIA_URL, POSTER_MEDIA_URL, VIDEO_URL } from "../API/urlConsts"
-import { useAppSelector } from "../store/hooks"
+import { BACKGROUND_MEDIA_URL, POSTER_MEDIA_URL } from "../../../API/urlConsts"
+import { useAppSelector } from "../../../store/hooks"
 
 export const MediaBlock = () => {
     const { movie } = useAppSelector((state) => state.movie)

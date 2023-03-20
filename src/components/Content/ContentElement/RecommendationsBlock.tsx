@@ -1,12 +1,11 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from "@mui/material";
-import { REC_BACKDROP_URL, REC_PHOTO, USER_PHOTO } from "../API/urlConsts";
-import { useAppSelector } from "../store/hooks"
+import { REC_BACKDROP_URL, REC_PHOTO } from "../../../API/urlConsts";
+import { useAppSelector } from "../../../store/hooks"
 
 
 
 export const RecommendationsBlock = () => {
     const { recommendations } = useAppSelector((state) => state.movie)
-    console.log('rec', recommendations);
 
     const recommendation = recommendations.map((result) => {
         if (result.backdrop_path === null) {

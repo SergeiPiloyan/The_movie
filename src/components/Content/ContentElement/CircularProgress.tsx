@@ -1,10 +1,8 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function CircularProgressWithLabel(props) {
+const CircularProgressWithLabel = (props: any) => {
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress variant="determinate" {...props} />
@@ -18,8 +16,8 @@ function CircularProgressWithLabel(props) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-       border: '2px solid white',
-       borderRadius: 2
+          border: '2px solid white',
+          borderRadius: 2
         }}
       >
         <Typography variant="caption" component="div" color="white">
@@ -30,16 +28,6 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-CircularProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
-   * @default 0
-   */
-  value: PropTypes.number.isRequired,
-};
-
 export default function CircularStatic() {
-  const [progress, setProgress] = React.useState(65);
- return <CircularProgressWithLabel value={progress} />;
+  return <CircularProgressWithLabel value={65} />;
 }

@@ -1,7 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from "@mui/material"
-import { useSelector } from "react-redux";
-import { ACTORS_PHOTO_URL } from "../API/urlConsts";
-import { useAppSelector } from "../store/hooks";
+import { ACTORS_PHOTO_URL } from "../../../API/urlConsts";
+import { useAppSelector } from "../../../store/hooks";
 
 
 export const CardOfActor = () => {

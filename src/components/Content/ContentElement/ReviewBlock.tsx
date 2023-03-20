@@ -1,12 +1,10 @@
 import { Button, Typography } from "@mui/material"
 import { Box, Stack } from "@mui/system"
-import { AUTHOR_REVIEW_URL, USER_PHOTO } from "../API/urlConsts"
-import { useAppSelector } from "../store/hooks"
+import { AUTHOR_REVIEW_URL, USER_PHOTO } from "../../../API/urlConsts"
+import { useAppSelector } from "../../../store/hooks"
 
 const ReviewBlock = () => {
-
     const { reviews } = useAppSelector((state) => state.movie)
-
     const randomReview = Math.floor(Math.random() * reviews.length);
 
 
@@ -36,12 +34,12 @@ const ReviewBlock = () => {
                 <Stack direction="row"
                     justifyContent="start"
                     alignItems="center"
-                    spacing={2}>
+                    spacing={-2}>
                     <Box sx={{ width: '15%', height: '330px', }}>
 
                         {reviews[randomReview].author_details.avatar_path
-                            ? <img style={{ margin: '20px 0 0 20px', borderRadius: 40 }} src={AUTHOR_REVIEW_URL + reviews[randomReview].author_details.avatar_path} />
-                            : <img style={{ margin: '20px 0 0 20px', width: 64, height: 64, borderRadius: 40 }} src={USER_PHOTO} />
+                            ? <img style={{ margin: '1em 2em', borderRadius: 40 }} src={AUTHOR_REVIEW_URL + reviews[randomReview].author_details.avatar_path} />
+                            : <img style={{ margin: '1em 2em', width: 64, height: 64, borderRadius: 40 }} src={USER_PHOTO} />
                         }
                     </Box>
 
